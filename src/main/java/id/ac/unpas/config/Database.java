@@ -4,34 +4,40 @@
  */
 package id.ac.unpas.config;
 
-/**
- *
- * @author Fikri Lazuardi
- */
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Database {
-    private static Connection mysqlconfig;
-    
+    // Sesuaikan dengan konfigurasi MySQL Anda
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/laundry_db";
+    private static final String USER = "root";
+    private static final String PASS = "";
+
+    private static Connection connection;
+
     public static Connection getConnection() {
-        try {
-            if (mysqlconfig == null || mysqlconfig.isClosed()) {
-                // Sesuaikan nama database, user, dan password di sini
-                String url = "jdbc:mysql://localhost:3306/laundry_db"; // ganti 'laundry_db' dengan nama DB mu
-                String user = "root"; // default xampp
-                String pass = "";     // default xampp kosong
-                
-                // Register Driver
-                DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-                mysqlconfig = DriverManager.getConnection(url, user, pass);
-                // System.out.println("Koneksi Berhasil!"); // Nyalakan untuk testing
+        if (connection == null) {
+            try {
+                // Register JDBC driver (opsional untuk versi baru, tapi bagus untuk memastikan)
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                connection = DriverManager.getConnection(DB_URL, USER, PASS);
+                System.out.println("Koneksi Database Berhasil!");
+            } catch (ClassNotFoundException | SQLException e) {
+                System.err.println("Koneksi Database Gagal: " + e.getMessage());
             }
-        } catch (SQLException e) {
-            System.err.println("Koneksi Gagal: " + e.getMessage());
         }
-        return mysqlconfig;
+        return connection;
+    }
+    
+    // Method untuk menutup koneksi jika perlu
+    public static void closeConnection() {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
