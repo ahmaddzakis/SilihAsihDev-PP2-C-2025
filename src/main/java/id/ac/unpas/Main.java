@@ -1,5 +1,7 @@
 package id.ac.unpas;
 
+import id.ac.unpas.config.Database;
+
 import javax.swing.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -29,7 +31,7 @@ public class Main {
         // 3. JALANKAN APLIKASI (Buka LoginView)
         SwingUtilities.invokeLater(() -> {
             // Kita panggil LoginView sebagai pintu masuk
-            LoginView login = new LoginView();
+            id.ac.unpas.laundry.view.LoginView login = new id.ac.unpas.laundry.view.LoginView();
             login.setVisible(true);
         });
     }

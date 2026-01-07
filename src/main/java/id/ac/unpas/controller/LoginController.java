@@ -11,10 +11,9 @@ package id.ac.unpas.controller;
 
 import id.ac.unpas.dao.AdminDAO;
 import id.ac.unpas.model.Admin;
-import id.ac.unpas.view.LoginView;
+import id.ac.unpas.laundry.view.LoginView;
 import id.ac.unpas.view.MainFrame;
-
-import javax.swing.*;
+import javax.swing.JOptionPane;
 
 public class LoginController {
     private LoginView view;

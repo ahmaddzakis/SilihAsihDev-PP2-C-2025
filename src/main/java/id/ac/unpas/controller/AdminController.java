@@ -10,11 +10,10 @@ package id.ac.unpas.controller;
  */
 
 import id.ac.unpas.dao.AdminDAO;
-import id.ac.unpas.view.AdminView;
 import id.ac.unpas.model.Admin;
-
-import javax.swing.*;
+import id.ac.unpas.laundry.view.AdminView;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class AdminController {
     private AdminView view;
